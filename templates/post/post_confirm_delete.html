@@ -1,0 +1,40 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+                        <strong>Message: </strong> {{ message }}
+                    </div>
+                {% endfor %}
+                <div class="content-section">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Delete Post</legend>
+                            <h2>Are you sure you want to delete the post "Sample Post Title"?</h2>
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+                            <a class="btn btn-outline-secondary" href="{% url 'user:home' %}">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3>Our Sidebar</h3>
+                    <p class='text-muted'>You can put any information here you'd like.</p>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-light">Latest Posts</li>
+                        <li class="list-group-item list-group-item-light">Announcements</li>
+                        <li class="list-group-item list-group-item-light">Calendars</li>
+                        <li class="list-group-item list-group-item-light">etc</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
